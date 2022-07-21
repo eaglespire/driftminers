@@ -10,7 +10,7 @@ class PlanHelpers
     {
         return Plan::get();
     }
-   public static function planName($id)
+    public static function planName($id)
    {
       return Plan::getPlanById($id)->first()->name;
    }

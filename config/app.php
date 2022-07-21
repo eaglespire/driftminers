@@ -198,6 +198,8 @@ return [
          \App\Providers\HighGardenServiceProvider::class,
         \App\Providers\WalletServiceProvider::class,
         \App\Providers\SubscriptionServiceProvider::class,
+        \App\Providers\UserServiceProvider::class,
+        \App\Providers\PlanServiceProvider::class,
     ],
 
     /*
@@ -218,8 +220,10 @@ return [
         'PlanHelpers'=>\App\Helpers\PlanHelpers::class,
         'DepositHelpers'=>\App\Helpers\DepositHelpers::class,
         'UserHelpers'=>\App\Helpers\UserHelpers::class,
-        'UserWallet'=>\App\Services\WalletServiceFacade::class,
-        'UserSubscription'=>\App\Services\SubscriptionServiceFacade::class,
+        'UserWallet'=> \App\Facades\WalletServiceFacade::class,
+        'UserSubscription'=> \App\Facades\SubscriptionServiceFacade::class,
+        'UserServices'=>\App\Facades\UserServicesFacade::class,
+        'PlanServices'=>\App\Facades\PlanServiceFacade::class,
     ])->toArray(),
 
 ];

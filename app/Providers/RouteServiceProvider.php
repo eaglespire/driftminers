@@ -17,7 +17,8 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/client/home/profile';
+    //public const HOME = '/client/home/profile';
+    public const HOME = '/client/home/';
     public const ADMIN = '/drift/miners/admin/profile';
 
     /**

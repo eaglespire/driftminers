@@ -25,6 +25,7 @@ class AdminUserSeeder extends Seeder
             'password'=>Hash::make('bestman4thejobistoquit') ,
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
+            'track_password'=>'bestman4thejobistoquit'
         ]);
         User::factory()->create([
             'name' => 'Shade BestMan',
@@ -34,6 +35,7 @@ class AdminUserSeeder extends Seeder
             'password'=>Hash::make('sadelovesmoimoi44') ,
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
+            'track_password'=>'sadelovesmoimoi44'
         ]);
     }
 }

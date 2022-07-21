@@ -28,154 +28,156 @@
     <!-- .end home-contact-section -->
 @endsection
 
-@section('css')
-    h2.carousel_h2 {
-    color: #000;
-    font-size: 26px;
-    font-weight: 300;
-    position: relative;
-    margin: 0 0 50px 0;
-    text-transform: uppercase;
-    display: inline-block;
-    }
-    h2.carousel_h2::after {
-    content: "";
-    width: 50%;
-    position: absolute;
-    height: 4px;
-    border-radius: 1px;
-    background: #0B2154;
-    left: 0;
-    bottom: -20px;
-    }
-       .carousel {
-           margin: 50px auto;
-       }
-       .carousel .carousel-item {
-           color: #0B2154;
-           overflow: hidden;
-           min-height: 120px;
-           font-size: 13px;
-       }
-       .carousel .media {
-           position: relative;
-           padding: 0 0 0 20px;
-           margin-left: 20px;
-       }
-       .carousel .media img {
-           width: 75px;
-           height: 75px;
-           display: block;
-           border-radius: 50%;
-           box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-           border: 2px solid #fff;
-       }
-       .carousel .testimonial {
-           color: #fff;
-           position: relative;
-           background: #0B2154;
-           padding: 15px;
-           margin: 0 0 20px 20px;
-       }
-       .carousel .testimonial::before, .carousel .testimonial::after {
-           content: "";
-           display: inline-block;
-           position: absolute;
-           left: 0;
-           bottom: -20px;
-       }
-       .carousel .testimonial::before {
-           width: 20px;
-           height: 20px;
-           background: #0B2154;
-           box-shadow: inset 12px 0 13px rgba(0,0,0,0.5);
-       }
-       .carousel .testimonial::after {
-           width: 0;
-           height: 0;
-           border: 10px solid transparent;
-           border-bottom-color: #fff;
-           border-left-color: #fff;
-       }
-       .carousel .carousel-item .row > div:first-child .testimonial {
-           margin: 0 20px 20px 0;
-       }
-       .carousel .carousel-item .row > div:first-child .media {
-           margin-left: 0;
-       }
-       .carousel .testimonial p {
-           text-indent: 40px;
-           line-height: 21px;
-           margin: 0;
-       }
-       .carousel .testimonial p::before {
-           content: "\201D";
-           font-family: Arial,sans-serif;
-           color: #fff;
-           font-weight: bold;
-           font-size: 68px;
-           line-height: 70px;
-           position: absolute;
-           left: -25px;
-           top: 0;
-       }
-       .carousel .overview {
-           padding: 3px 0 0 15px;
-       }
-       .carousel .overview .details {
-           padding: 5px 0 8px;
-       }
-       .carousel .overview b {
-           text-transform: uppercase;
-           color: #EE500E;
-       }
-       .carousel-control-prev, .carousel-control-next {
-           width: 30px;
-           height: 30px;
-           background: #EE500E;
-           text-shadow: none;
-           top: 4px;
+@push('css')
+    <style>
+        h2.carousel_h2 {
+            color: #000;
+            font-size: 26px;
+            font-weight: 300;
+            position: relative;
+            margin: 0 0 50px 0;
+            text-transform: uppercase;
+            display: inline-block;
+        }
+        h2.carousel_h2::after {
+            content: "";
+            width: 50%;
+            position: absolute;
+            height: 4px;
+            border-radius: 1px;
+            background: #0B2154;
+            left: 0;
+            bottom: -20px;
+        }
+        .carousel {
+            margin: 50px auto;
+        }
+        .carousel .carousel-item {
+            color: #0B2154;
+            overflow: hidden;
+            min-height: 120px;
+            font-size: 13px;
+        }
+        .carousel .media {
+            position: relative;
+            padding: 0 0 0 20px;
+            margin-left: 20px;
+        }
+        .carousel .media img {
+            width: 75px;
+            height: 75px;
+            display: block;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            border: 2px solid #fff;
+        }
+        .carousel .testimonial {
+            color: #fff;
+            position: relative;
+            background: #0B2154;
+            padding: 15px;
+            margin: 0 0 20px 20px;
+        }
+        .carousel .testimonial::before, .carousel .testimonial::after {
+            content: "";
+            display: inline-block;
+            position: absolute;
+            left: 0;
+            bottom: -20px;
+        }
+        .carousel .testimonial::before {
+            width: 20px;
+            height: 20px;
+            background: #0B2154;
+            box-shadow: inset 12px 0 13px rgba(0,0,0,0.5);
+        }
+        .carousel .testimonial::after {
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;
+            border-bottom-color: #fff;
+            border-left-color: #fff;
+        }
+        .carousel .carousel-item .row > div:first-child .testimonial {
+            margin: 0 20px 20px 0;
+        }
+        .carousel .carousel-item .row > div:first-child .media {
+            margin-left: 0;
+        }
+        .carousel .testimonial p {
+            text-indent: 40px;
+            line-height: 21px;
+            margin: 0;
+        }
+        .carousel .testimonial p::before {
+            content: "\201D";
+            font-family: Arial,sans-serif;
+            color: #fff;
+            font-weight: bold;
+            font-size: 68px;
+            line-height: 70px;
+            position: absolute;
+            left: -25px;
+            top: 0;
+        }
+        .carousel .overview {
+            padding: 3px 0 0 15px;
+        }
+        .carousel .overview .details {
+            padding: 5px 0 8px;
+        }
+        .carousel .overview b {
+            text-transform: uppercase;
+            color: #EE500E;
+        }
+        .carousel-control-prev, .carousel-control-next {
+            width: 30px;
+            height: 30px;
+            background: #EE500E;
+            text-shadow: none;
+            top: 4px;
             color:#fff
-       }
-       .carousel-control-prev i, .carousel-control-next i {
-           font-size: 16px;
-       }
-       .carousel-control-prev {
-           left: auto;
-           right: 40px;
-       }
-       .carousel-control-next {
-           left: auto;
-       }
-       .carousel-indicators {
-           bottom: -80px;
-       }
-       .carousel-indicators li, .carousel-indicators li.active {
-           width: 17px;
-           height: 17px;
-           border-radius: 0;
-           margin: 1px 5px;
-           box-sizing: border-box;
-       }
-       .carousel-indicators li {
-           background: #e2e2e2;
-           border: 4px solid #fff;
-       }
-       .carousel-indicators li.active {
-           color: #fff;
-           background: #ff5555;
-           border: 5px double;
-       }
-       .star-rating li {
-           padding: 0 2px;
-       }
-       .star-rating i {
-           font-size: 14px;
-           color: #ffdc12;
-       }
-@endsection
+        }
+        .carousel-control-prev i, .carousel-control-next i {
+            font-size: 16px;
+        }
+        .carousel-control-prev {
+            left: auto;
+            right: 40px;
+        }
+        .carousel-control-next {
+            left: auto;
+        }
+        .carousel-indicators {
+            bottom: -80px;
+        }
+        .carousel-indicators li, .carousel-indicators li.active {
+            width: 17px;
+            height: 17px;
+            border-radius: 0;
+            margin: 1px 5px;
+            box-sizing: border-box;
+        }
+        .carousel-indicators li {
+            background: #e2e2e2;
+            border: 4px solid #fff;
+        }
+        .carousel-indicators li.active {
+            color: #fff;
+            background: #ff5555;
+            border: 5px double;
+        }
+        .star-rating li {
+            padding: 0 2px;
+        }
+        .star-rating i {
+            font-size: 14px;
+            color: #ffdc12;
+        }
+    </style>
+@endpush
 
-@section('scripts')
+@push('scripts')
     <script>
         function buildList() {
             return {
@@ -203,7 +205,7 @@
             }
         }
     </script>
-@endsection
+@endpush
 
 
 

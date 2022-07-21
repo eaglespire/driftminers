@@ -17,7 +17,7 @@ if (!function_exists('role_checker')){
         if (auth()->user()->is_admin){
             return route('admin_home');
         } elseif (!auth()->user()->is_admin){
-            return route('client_profile');
+            return route('client.profile');
         }
         return route('login');
     }

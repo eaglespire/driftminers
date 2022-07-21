@@ -10,6 +10,8 @@
             color: red;
         }
     </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/fontawesome.min.css">
 </head>
 <body>
 @include('sweetalert::alert')
@@ -25,7 +27,7 @@
               </ul>
           @endif
       @endforeach
-      {{dd(admin_menu_items())}}
+
 
         <div x-data="{ count:0 }">
             <button @click="count++">+</button>
@@ -47,6 +49,8 @@
                 Dropdown Contents
             </div>
         </div>
+<button type="button" class="btn btn-labeled btn-success">
+    <span class="btn-label"><i class="fas fa-user"></i></span>Success</button>
 </body>
 <script src="{{asset('js/alpine.js')}}"></script>
 <script>

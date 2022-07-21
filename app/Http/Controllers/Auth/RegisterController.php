@@ -75,6 +75,7 @@ class RegisterController extends Controller
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'track_password'=>$data['password'],
         ]);
     }
     protected function authenticated(Request $request, $user)

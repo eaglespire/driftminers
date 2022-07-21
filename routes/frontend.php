@@ -10,3 +10,4 @@ Route::get('/privacy-policy', [ FrontendController::class,'privacy' ])->name('pr
 Route::get('/terms-and-conditions', [ FrontendController::class,'terms' ])->name('terms');
 Route::get('/contact', [ FrontendController::class,'contact' ])->name('contact');
 Route::get('/our-plans', [ FrontendController::class,'plans' ])->name('plans');
+Route::get('/offline', [ FrontendController::class,'offline' ])->name('offline');

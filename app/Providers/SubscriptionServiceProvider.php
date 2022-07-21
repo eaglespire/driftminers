@@ -14,7 +14,7 @@ class SubscriptionServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('subscription', function(){
+        $this->app->bind('SubscriptionService', function(){
             return new SubscriptionService;
         });
     }

@@ -1,72 +1,72 @@
 <section class="counter-section pt-100 pb-70">
     <div class="container mt-5">
-        <div class="h3 text-muted">Top Cryptocurrency</div>
-        <div id="starred" class="bg-white px-2 pt-1 mt-2">
-            <div class="table-responsive">
-                <table class="table">
-                    <tbody>
-                    <tr>
-                        <td>
-                            <div class="d-flex mt-2 border-right">
-                                <div class="box_crypto p-2 rounded">
-                                    <span class="fas fa-star text-primary px-1"></span>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="d-flex flex-column">
-                                <div class="text-muted">Name</div>
-                                <div class="d-flex align-items-center">
-                                    <div>
-                                        <img src="https://www.freepnglogos.com/uploads/bitcoin-png/bitcoin-all-about-bitcoins-9.png"
-                                             alt="" class="icons">
-                                    </div>
-                                    <b class="pl-2">Bitcoin</b>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="d-flex flex-column">
-                                <div class="text-muted">Market cap</div>
-                                <div><b>${{ number_format($singleCrypto->marketCapUsd,0) }}</b></div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="d-flex flex-column">
-                                <div class="text-muted">Price</div>
-                                <div><b>${{ number_format($singleCrypto->priceUsd,6) }}</b></div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="d-flex flex-column">
-                                <div class="d-flex align-items-center labels">
-                                    <div class="text-muted">Volume</div>
-                                    <div class="green-label mx-1 px-1 rounded">74</div>
-                                </div>
-                                <div><b> ${{ number_format($singleCrypto->volumeUsd24Hr,0) }}</b></div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="d-flex flex-column">
-                                <div class="d-flex align-items-center labels">
-                                    <div class="text-muted">Change</div>
-                                </div>
-                                <div><b class="red">{{ number_format($singleCrypto->changePercent24Hr,0) }}%</b></div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="d-flex flex-column">
-                                <div class="d-flex align-items-center labels">
-                                    <div class="text-muted">Supply</div>
-                                </div>
-                                <div><b class="green">{{ number_format($singleCrypto->supply,0) }}</b></div>
-                            </div>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+{{--        <div class="h3 text-muted">Top Cryptocurrency</div>--}}
+{{--        <div id="starred" class="bg-white px-2 pt-1 mt-2">--}}
+{{--            <div class="table-responsive">--}}
+{{--                <table class="table">--}}
+{{--                    <tbody>--}}
+{{--                    <tr>--}}
+{{--                        <td>--}}
+{{--                            <div class="d-flex mt-2 border-right">--}}
+{{--                                <div class="box_crypto p-2 rounded">--}}
+{{--                                    <span class="fas fa-star text-primary px-1"></span>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </td>--}}
+{{--                        <td>--}}
+{{--                            <div class="d-flex flex-column">--}}
+{{--                                <div class="text-muted">Name</div>--}}
+{{--                                <div class="d-flex align-items-center">--}}
+{{--                                    <div>--}}
+{{--                                        <img src="https://www.freepnglogos.com/uploads/bitcoin-png/bitcoin-all-about-bitcoins-9.png"--}}
+{{--                                             alt="" class="icons w-25">--}}
+{{--                                    </div>--}}
+{{--                                    <b class="pl-2">Bitcoin</b>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </td>--}}
+{{--                        <td>--}}
+{{--                            <div class="d-flex flex-column">--}}
+{{--                                <div class="text-muted">Market cap</div>--}}
+{{--                                <div><b>${{ number_format($singleCrypto->marketCapUsd,0) }}</b></div>--}}
+{{--                            </div>--}}
+{{--                        </td>--}}
+{{--                        <td>--}}
+{{--                            <div class="d-flex flex-column">--}}
+{{--                                <div class="text-muted">Price</div>--}}
+{{--                                <div><b>${{ number_format($singleCrypto->priceUsd,6) }}</b></div>--}}
+{{--                            </div>--}}
+{{--                        </td>--}}
+{{--                        <td>--}}
+{{--                            <div class="d-flex flex-column">--}}
+{{--                                <div class="d-flex align-items-center labels">--}}
+{{--                                    <div class="text-muted">Volume</div>--}}
+{{--                                    <div class="green-label mx-1 px-1 rounded">74</div>--}}
+{{--                                </div>--}}
+{{--                                <div><b> ${{ number_format($singleCrypto->volumeUsd24Hr,0) }}</b></div>--}}
+{{--                            </div>--}}
+{{--                        </td>--}}
+{{--                        <td>--}}
+{{--                            <div class="d-flex flex-column">--}}
+{{--                                <div class="d-flex align-items-center labels">--}}
+{{--                                    <div class="text-muted">Change</div>--}}
+{{--                                </div>--}}
+{{--                                <div><b class="red">{{ number_format($singleCrypto->changePercent24Hr,0) }}%</b></div>--}}
+{{--                            </div>--}}
+{{--                        </td>--}}
+{{--                        <td>--}}
+{{--                            <div class="d-flex flex-column">--}}
+{{--                                <div class="d-flex align-items-center labels">--}}
+{{--                                    <div class="text-muted">Supply</div>--}}
+{{--                                </div>--}}
+{{--                                <div><b class="green">{{ number_format($singleCrypto->supply,0) }}</b></div>--}}
+{{--                            </div>--}}
+{{--                        </td>--}}
+{{--                    </tr>--}}
+{{--                    </tbody>--}}
+{{--                </table>--}}
+{{--            </div>--}}
+{{--        </div>--}}
         <div class="d-lg-flex align-items-lg-center py-4">
             <div class="h3 text-muted">Top Cryptocurrency Prices</div>
         </div>

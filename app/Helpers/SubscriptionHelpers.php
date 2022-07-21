@@ -6,6 +6,7 @@ use App\Jobs\SubscriptionActivationJob;
 use App\Models\Subscription;
 use App\Models\User;
 use App\Models\Wallet;
+use App\Notifications\AwaitingSubscriptionVerfication;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +25,12 @@ class SubscriptionHelpers
     }
    public static function subscribe(Request $request)
    {
-      return Subscription::create($request->only('user_id','plan_id','amount'));
+       Subscription::create($request->only('user_id','plan_id','amount'));
+       //grab the user and notify him and the admins
+       $user = User::where('id', $request['user_id'])->first();
+       //dd($user);
+       $user->notify(new AwaitingSubscriptionVerfication($user));
+       return true;
    }
    public static function checkUserSubscriptionStatus($id): bool
    {

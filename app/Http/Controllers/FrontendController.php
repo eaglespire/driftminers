@@ -47,4 +47,8 @@ class FrontendController extends Controller
     {
         return view('pages.plans');
     }
+    public function offline()
+    {
+        return view('pages.offline');
+    }
 }

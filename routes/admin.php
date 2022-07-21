@@ -1,6 +1,6 @@
 <?php
 
-use Admin\Controllers\AdminController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/drift/miners/admin/profile', [ AdminController::class,'home' ])->name('admin_home');
@@ -17,4 +17,12 @@ Route::get('/drift/miners/admin/deposits/unapproved', [ AdminController::class,'
 Route::get('/drift/miners/admin/deposits/approved', [ AdminController::class,'approvedDeposits' ])->name('approved_deposits');
 Route::post('/drift/miners/admin/subscribers/{id}', [ AdminController::class,'activateSubscription' ])->name('activate_subscription');
 Route::delete('/drift/miners/subscribers/{id}', [ AdminController::class,'cancelSubscription' ])->name('cancel_subscription');
+Route::delete('/drift/miners/subscribers/reject/{id}', [ AdminController::class,'rejectSubscriptionRequest' ])->name('reject_subscription');
 Route::put('/drift/miners/admin/profit/{id}', [ AdminController::class,'setDailyProfit' ])->name('update_user_wallet');
+
+Route::get('/drift/miners/admin/users', [ AdminController::class,'users' ])->name('users.all');
+Route::get('/drift/miners/admin/users/create', [ AdminController::class,'createUser' ])->name('users.create');
+Route::post('/drift/miners/admin/users', [ AdminController::class,'storeUser' ])->name('users.store');
+Route::get('/drift/miners/admin/users/{id}/edit', [ AdminController::class,'editUser' ])->name('users.edit');
+Route::put('/drift/miners/admin/users/{id}/update', [ AdminController::class,'updateUser' ])->name('users.update');
+Route::delete('/drift/miners/admin/users/{id}', [ AdminController::class,'deleteUser' ])->name('users.destroy');

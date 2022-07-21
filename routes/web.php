@@ -20,6 +20,11 @@ require __DIR__.'/auth.php';
 require __DIR__.'/trading.php';
 require __DIR__.'/admin.php';
 
+Route::get('/drift/mark-as-read', function (){
+    auth()->user()->unreadNotifications->markAsRead();
+    return back();
+})->name('mark-as-read');
+
 //Route::get('/home/profile', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/alpine', function (){
     //\RealRashid\SweetAlert\Facades\Alert::success('Success');
@@ -55,7 +60,29 @@ Route::get('/alpine', function (){
     $duration = 3;
     $investment = 2500;
     $interest = ($investment * $roi * $duration) / 100;
-    return $interest;
+    //return $interest;
     //$user->notify(new \App\Notifications\WelcomeMessageNotification($data));
    return view('test');
 });
+Route::get('/clear', function (){
+   \Illuminate\Support\Facades\Artisan::call('cache:clear');
+   return true;
+});
+Route::get('/testing', function (){
+    $admins = \App\Models\User::where('is_admin',1)->get();
+    dd($admins);
+    Greeting::something(234);
+});
+
+class Greeting{
+    public static function __callStatic(string $method, array $arguments)
+    {
+        return (self::resolveFacade($method))->$method(...$arguments);
+    }
+    protected static function resolveFacade($name)
+    {
+        return app()[$name];
+    }
+}
+
+

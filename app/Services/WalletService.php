@@ -49,5 +49,16 @@ class WalletService
        $userWallet = Wallet::where('user_id',$userId)->first();
        return $userWallet->updated_at->toFormattedDateString();
    }
+    public function getUserWallet($userId)
+    {
+        return Wallet::whereId($userId)->first();
+    }
+    public function buildWallet($userId,$amount)
+    {
+        return Wallet::create([
+            'user_id'=>$userId,
+            'balance'=>$amount
+        ]);
+    }
 }
 

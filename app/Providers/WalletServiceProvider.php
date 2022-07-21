@@ -16,7 +16,7 @@ class WalletServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('wallet', function ($app){
+        $this->app->bind('WalletService', function ($app){
            return new WalletService;
         });
     }

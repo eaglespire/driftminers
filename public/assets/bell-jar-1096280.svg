@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="800" version="1.1" viewBox="0 0 800.00001 800.00001" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <linearGradient id="c" x1="294.99" x2="-124.28" y1="554.71" y2="964.83" gradientUnits="userSpaceOnUse">
+   <stop offset="0"/>
+   <stop stop-opacity="0" offset="1"/>
+  </linearGradient>
+  <mask id="b" maskUnits="userSpaceOnUse">
+   <circle cx="400" cy="634.51" r="780" color="#000000" color-rendering="auto" fill="#fff" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  </mask>
+  <mask id="a" maskUnits="userSpaceOnUse">
+   <circle cx="400" cy="400" r="400" color="#000000" color-rendering="auto" fill="#fff" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  </mask>
+ </defs>
+ <g transform="translate(0 -252.36)">
+  <circle cx="400" cy="652.36" r="400" color="#000000" color-rendering="auto" fill="#1c8adb" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <path transform="translate(0 252.36)" d="m400.23 204.24c-3.7008 0.0694-7.4086 2.0938-10.66 6.0234l-47.76 47.758c-0.0439 0.0353-0.087 0.0754-0.13086 0.11133-10.423 4.9007-19.241 11.602-26.643 19.338l-284.32 284.32c59.912 121.02 152.92 212.26 320.21 236.64l245.15-245.15c6.0254-2.859 5.1501-14.609-2.8965-14.609-33.382-1.8064-60.921-11.001-74.926-188.96-2.9606-33.353-28.45-98.367-97.461-100.14 0-30.611-10.243-45.528-20.562-45.334z" fill="url(#c)" fill-rule="evenodd" mask="url(#a)" opacity=".42"/>
+  <g transform="matrix(.51282 0 0 .51282 194.87 326.97)" fill="#fff" mask="url(#b)">
+   <path d="m359.46 341.17c-134.57 3.4551-183.04 131.52-190.11 200.44-27.31 347.03-80.955 359.79-146.05 363.31-17.863 0-17.609 29.706 0 29.706h753.4c17.609 0 17.863-29.706 0-29.706-65.096-3.5224-118.8-21.45-146.11-368.48-5.7731-65.039-55.477-191.82-190.05-195.27 0-119.38-79.898-116.36-81.082 0z" fill-rule="evenodd"/>
+   <path d="m323.14 950.41a79.994 79.994 0 0 0 -3.1361 21.951 79.994 79.994 0 0 0 80 80.002 79.994 79.994 0 0 0 80 -80.002 79.994 79.994 0 0 0 -3.0791 -21.951h-153.78z" color="#000000" color-rendering="auto" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  </g>
+ </g>
+</svg>
