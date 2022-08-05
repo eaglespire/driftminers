@@ -3,7 +3,7 @@
 namespace App\Helpers;
 
 use App\Models\Plan;
-use App\Models\Subscription;
+use App\Models\Subscriber;
 use App\Models\User;
 use App\Models\Wallet;
 use Illuminate\Support\Facades\Cache;

@@ -20,7 +20,7 @@ jQuery(function ($) {
 		$('body').addClass('pre-loaded');
 	});
 
-    
+
     $(document).ready(function() {
 
         // magnific-popup
@@ -55,29 +55,29 @@ jQuery(function ($) {
             ],
             dots: false,
             smartSpeed: 2500,
-            
+
             responsive:{
-    
+
                 0: {
                     items: 1
                 },
-    
+
                 768: {
                     items: 2
                 },
-    
+
                 1000: {
                     items: 3
                 }
             }
         })
-        
+
         // counter -> homepage 1
         $('.counter').counterUp({
             delay: 10,
             time: 1000
         });
-    
+
         // home-client-carousel
         $('.client-carousel').owlCarousel({
             loop: false,
@@ -87,15 +87,15 @@ jQuery(function ($) {
             smartSpeed: 1500,
 
             responsive:{
-    
+
                 0: {
                     items: 1
                 },
-    
+
                 768: {
                     items: 1
                 },
-    
+
                 1000: {
                     items: 1
                 }
@@ -122,7 +122,7 @@ jQuery(function ($) {
             items: 1,
             slideSpeed: 8000,
             nav: true,
-            autoplay: false, 
+            autoplay: false,
             dots: false,
             loop: true,
             animateIn: 'fadeIn',
@@ -144,7 +144,7 @@ jQuery(function ($) {
                 slideSpeed: 500,
                 slideBy: 4,
                 responsive: {
-    
+
                     0: {
                         items: 1,
                     },
@@ -152,7 +152,7 @@ jQuery(function ($) {
                     768: {
                         items: 2,
                     },
-        
+
                     992: {
                         items: 3,
                     },
@@ -160,7 +160,7 @@ jQuery(function ($) {
                     1200: {
                         items: 4,
                     }
-        
+
                     // 1600: {
                     //     items: 5,
                     // },
@@ -221,15 +221,15 @@ jQuery(function ($) {
             smartSpeed: 1500,
 
             responsive:{
-    
+
                 0: {
                     items: 2
                 },
-    
+
                 768: {
                     items: 3
                 },
-    
+
                 1000: {
                     items: 5
                 }
@@ -247,17 +247,17 @@ jQuery(function ($) {
                 "<span class='flaticon-left-arrow'></span>",
                 "<span class='flaticon-right-arrow'></span>"
             ],
-            
+
             responsive:{
-    
+
                 0: {
                     items: 1
                 },
-    
+
                 768: {
                     items: 1
                 },
-    
+
                 1000: {
                     items: 1
                 }
@@ -277,7 +277,7 @@ jQuery(function ($) {
             $(".authentication-tab-details-item[data-authentcation-details=" +tab_modal+ "]").addClass("authentication-tab-details-active").siblings().removeClass("authentication-tab-details-active");
         })
 
-        // Subscribe form
+        // SendSubscriptionRequest form
         $(".newsletter-form").validator().on("submit", function(event) {
             if (event.isDefaultPrevented()) {
                 // handle the invalid form...
@@ -326,9 +326,9 @@ jQuery(function ($) {
         //     url: "https://hibootstrap.us20.list-manage.com/subscribe/post?u=60e1ffe2e8a68ce1204cd39a5&amp;id=42d6d188d9", // Your url MailChimp
         //     callback: callbackFunction
         // });
-        
+
     });
-    
+
     // $(window).on('load', function(){
 
 	// 	// preloader

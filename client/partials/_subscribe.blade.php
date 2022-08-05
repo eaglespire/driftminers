@@ -19,7 +19,7 @@
                 <input type="number" name="amount" id="amount" class="form-control">
             </div>
 
-            <button type="submit" class="btn btn-primary" onclick="return confirm('Subscribe Now?')">Subscribe</button>
+            <button type="submit" class="btn btn-primary" onclick="return confirm('SendSubscriptionRequest Now?')">Subscribe</button>
             <button type="reset" class="btn btn-info">Cancel</button>
         </form>
     </div>

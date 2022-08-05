@@ -42,4 +42,40 @@
             </form>
         </div>
     </div>
+    @if(!ProfileFacade::fetchWalletAddress(auth()->id()))
+        <div class="card">
+        <div class="card-header">
+            Set up Wallet Address
+        </div>
+        <div class="card-body">
+            <form method="post" action="{{ route('client.store-wallet-address') }}">
+                @csrf
+                <div class="form-group">
+                    <label for="" class="form-label">Wallet Address</label>
+                    <input name="address" type="text" class="form-control" placeholder="wallet address">
+                </div>
+                <button type="submit" class="btn btn-primary" onclick="return confirm('Proceed?')">Add</button>
+                <button type="reset" class="btn btn-info">Cancel</button>
+            </form>
+        </div>
+    </div>
+    @else
+        <div class="card">
+            <div class="card-header">
+                Update Wallet Address
+            </div>
+            <div class="card-body">
+                <form method="post" action="{{ route('client.update-wallet-address') }}">
+                    @csrf
+                    @method('put')
+                    <div class="form-group">
+                        <label for="" class="form-label">Current Wallet Address</label>
+                        <input name="address" type="text" class="form-control" value="{{ ProfileFacade::fetchWalletAddress(auth()->id()) }}">
+                    </div>
+                    <button type="submit" class="btn btn-primary" onclick="return confirm('Proceed?')">Change</button>
+                    <button type="reset" class="btn btn-info">Cancel</button>
+                </form>
+            </div>
+        </div>
+    @endif
 </x-layouts.client>

@@ -185,7 +185,7 @@ return [
         /*
          * Package Service Providers...
          */
-        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        //RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         WisdomDiala\Cryptocap\Providers\CryptocapServiceProvider::class,
         /*
          * Application Service Providers...
@@ -195,11 +195,15 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-         \App\Providers\HighGardenServiceProvider::class,
+        // \App\Providers\HighGardenServiceProvider::class,
         \App\Providers\WalletServiceProvider::class,
         \App\Providers\SubscriptionServiceProvider::class,
         \App\Providers\UserServiceProvider::class,
         \App\Providers\PlanServiceProvider::class,
+        \App\Providers\WithdrawalServiceProvider::class,
+        \App\Providers\CryptoServiceProvider::class,
+        \App\Providers\ProfileServiceProvider::class,
+        \App\Providers\TransactionHistoryServiceProvider::class,
     ],
 
     /*
@@ -215,15 +219,19 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
-        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+       // 'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'Cryptocap' => WisdomDiala\Cryptocap\Facades\Cryptocap::class,
-        'PlanHelpers'=>\App\Helpers\PlanHelpers::class,
-        'DepositHelpers'=>\App\Helpers\DepositHelpers::class,
-        'UserHelpers'=>\App\Helpers\UserHelpers::class,
-        'UserWallet'=> \App\Facades\WalletServiceFacade::class,
-        'UserSubscription'=> \App\Facades\SubscriptionServiceFacade::class,
-        'UserServices'=>\App\Facades\UserServicesFacade::class,
-        'PlanServices'=>\App\Facades\PlanServiceFacade::class,
+//        'PlanHelpers'=>\App\Helpers\PlanHelpers::class,
+//        'DepositHelpers'=>\App\Helpers\DepositHelpers::class,
+//        'UserHelpers'=>\App\Helpers\UserHelpers::class,
+        'WalletFacade'=> \App\Facades\WalletFacade::class,
+        'SubscriptionFacade'=> \App\Facades\SubscriptionFacade::class,
+        'UserFacade'=>\App\Facades\UserFacade::class,
+        'PlanFacade'=>\App\Facades\PlanFacade::class,
+        'WithdrawalFacade'=>\App\Facades\WithdrawalFacade::class,
+        'CryptoFacade'=>\App\Facades\CryptoFacade::class,
+        'ProfileFacade'=>\App\Facades\ProfileFacade::class,
+        'TransactionHistoryFacade'=>\App\Facades\TransactionHistoryFacade::class,
     ])->toArray(),
 
 ];

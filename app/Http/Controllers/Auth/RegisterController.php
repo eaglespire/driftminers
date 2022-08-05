@@ -43,7 +43,7 @@ class RegisterController extends Controller
     }
     public function showRegistrationForm()
     {
-        return view('pages.authentication');
+        return view('pages.register');
     }
 
     /**

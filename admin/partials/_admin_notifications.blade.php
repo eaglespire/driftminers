@@ -6,7 +6,7 @@
     </a>
     @if(count(auth()->user()->unreadNotifications) != 0)
     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          @foreach(auth()->user()->notifications as $notification)
+          @foreach(auth()->user()->unreadNotifications as $notification)
             <div class="dropdown-divider"></div>
             <a href="#" class="dropdown-item">
                 <!-- Message Start -->
@@ -14,7 +14,7 @@
                     <img src="{{ asset('dist/img/avatar.png') }}" alt="User Avatar" class="img-size-50 img-circle mr-3">
                     <div class="media-body">
                         <h3 class="dropdown-item-title">
-                            {{ $notification->data['name'] }}
+                            {{ $notification->data['name'] ?? null }}
                             <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
                         </h3>
                         <p class="text-sm">{{ $notification->data['message'] }}</p>

@@ -2,23 +2,24 @@
 
 namespace App\Notifications;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ProfileUpdated extends Notification  implements ShouldQueue
+class ProfileUpdated extends Notification
 {
     use Queueable;
-
+    public User $user;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(User $user)
     {
-        //
+       $this->user = $user;
     }
 
     /**
@@ -55,7 +56,8 @@ class ProfileUpdated extends Notification  implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'message'=>'Your profile has been updated successfully'
+            'message'=>'Your profile has been updated successfully',
+            'name'=>$this->user->name,
         ];
     }
 }

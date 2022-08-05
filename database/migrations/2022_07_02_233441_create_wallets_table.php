@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onUpdate('CASCADE')->onDelete('CASCADE');
 //            $table->foreignId('plan_id')->constrained()->onUpdate('CASCADE')->onDelete('CASCADE');
-            $table->decimal('balance')->default(0);
+            $table->decimal('balance',24,3)->default(0);
+            $table->dateTime('last_mining_date')->nullable();
             $table->timestamps();
         });
     }

@@ -3,7 +3,7 @@
 namespace App\Helpers;
 
 use App\Jobs\SubscriptionActivationJob;
-use App\Models\Subscription;
+use App\Models\Subscriber;
 use App\Models\User;
 use App\Models\Wallet;
 use App\Notifications\AwaitingSubscriptionVerfication;
@@ -25,7 +25,7 @@ class SubscriptionHelpers
     }
    public static function subscribe(Request $request)
    {
-       Subscription::create($request->only('user_id','plan_id','amount'));
+       Subscriber::create($request->only('user_id','plan_id','amount'));
        //grab the user and notify him and the admins
        $user = User::where('id', $request['user_id'])->first();
        //dd($user);
@@ -34,7 +34,7 @@ class SubscriptionHelpers
    }
    public static function checkUserSubscriptionStatus($id): bool
    {
-       $res = Subscription::where('user_id',$id)->first();
+       $res = Subscriber::where('user_id',$id)->first();
        if ($res){
            return true;
        }
@@ -42,15 +42,15 @@ class SubscriptionHelpers
    }
    public static function fetchUserSubscribedPlan($id)
    {
-       return Subscription::with('plan','user')->whereUser_id($id)->first();
+       return Subscriber::with('plan','user')->whereUser_id($id)->first();
    }
    public static function fetchSubscribedUsers()
    {
-       return Subscription::with('user','plan')->get();
+       return Subscriber::with('user','plan')->get();
    }
    public static function fetchSubscribedUser($subscriptionId)
    {
-      return Subscription::with('user','plan')->whereId($subscriptionId)->first();
+      return Subscriber::with('user','plan')->whereId($subscriptionId)->first();
    }
    public static function activateSubscription($subscriptionId) : bool
    {
@@ -58,7 +58,7 @@ class SubscriptionHelpers
        * Find the subscription to activate
         * Set the start and end date as well
         */
-       $subscription = Subscription::with('plan','user')->whereId($subscriptionId)->first();
+       $subscription = Subscriber::with('plan','user')->whereId($subscriptionId)->first();
        //check to see if the subscription is already active
        if ($subscription->confirm_subscription){
           return false;
@@ -113,7 +113,7 @@ class SubscriptionHelpers
         /*
          * Fetch the current plan of the user
          */
-        $subscription = Subscription::with('user','plan')->whereId($subscriptionId)->first();
+        $subscription = Subscriber::with('user','plan')->whereId($subscriptionId)->first();
         if ($subscription){
             $subscription->delete();
             return true;

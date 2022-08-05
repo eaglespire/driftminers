@@ -1,4 +1,3 @@
-
 <div class="card">
     <img src="{{ asset('assets/crypto2/bitcoin-7168736.svg') }}" class="card-img-top" alt="...">
     <h5 class="card-header">Your Information</h5>

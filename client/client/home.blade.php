@@ -7,6 +7,27 @@
         <div class="col-xl-8 col-md-10 col-sm-12">
             <div class="card-columns">
                 <div class="card">
+                    <img src="{{ asset('assets/non-fungible-token-7252677.svg') }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ config('app.name') }} Wallet Address</h5>
+                    </div>
+                    <div class="card-footer bg-primary">
+                        <h5 class="card-text text-white text-center">
+                            {{ ProfileFacade::fetchAdminBTCAddress() }}
+                        </h5>
+                    </div>
+                </div>
+                @if(SubscriptionFacade::subscriptionIsActive(auth()->id()))
+                    <div class="card">
+                        <img src="{{ asset('assets/bitcoin.gif') }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <button class="btn btn-success btn-block">
+                                <i class="fab fa-bitcoin"></i> Mining In Action ...
+                            </button>
+                        </div>
+                    </div>
+                @endif
+                <div class="card">
                     <img src="{{ asset('/assets/marketing-4646598_640.webp') }}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <div class="d-grid">
@@ -50,24 +71,24 @@
                         <a href="{{ route('client.transactions') }}" class="btn-block btn btn-link stretched-link">{{__('Transaction History')}}</a>
                     </div>
                 </div>
-                <div class="card">
-                    <img src="{{ asset('assets/bell-jar-1096280.svg') }}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <a href="{{ route('client.notifications') }}" class="btn-block btn btn-link stretched-link">{{__('Notifications')}}</a>
-                    </div>
-                </div>
+{{--                <div class="card">--}}
+{{--                    <img src="{{ asset('assets/bell-jar-1096280.svg') }}" class="card-img-top" alt="...">--}}
+{{--                    <div class="card-body">--}}
+{{--                        <a href="{{ route('client.notifications') }}" class="btn-block btn btn-link stretched-link">{{__('Notifications')}}</a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
                 <div class="card">
                     <img src="{{ asset('assets/training-5822607_640.webp') }}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <a href="{{ route('client.all-plans') }}" class="btn-block btn btn-link stretched-link">{{__('All Plans')}}</a>
                     </div>
                 </div>
-                <div class="card">
-                    <img src="{{ asset('assets/gear-1077550.svg') }}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <a href="{{ route('client.settings') }}" class="btn-block btn btn-link stretched-link">{{__('Settings')}}</a>
-                    </div>
-                </div>
+{{--                <div class="card">--}}
+{{--                    <img src="{{ asset('assets/gear-1077550.svg') }}" class="card-img-top" alt="...">--}}
+{{--                    <div class="card-body">--}}
+{{--                        <a href="{{ route('client.settings') }}" class="btn-block btn btn-link stretched-link">{{__('Settings')}}</a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
         </div>
     </div>

@@ -8,9 +8,10 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ClientDBSubscriptionRejected extends Notification implements ShouldQueue
+class ClientDBSubscriptionRejected extends Notification
 {
     public User $user;
+    public String $message;
     use Queueable;
 
     /**
@@ -18,9 +19,10 @@ class ClientDBSubscriptionRejected extends Notification implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct(User $user, String $message)
     {
         $this->user = $user;
+        $this->message = $message;
     }
 
     /**
@@ -57,7 +59,7 @@ class ClientDBSubscriptionRejected extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'message'=>"Ooops!!!, Your request was not successful"
+            'message'=>$this->message
         ];
     }
 }

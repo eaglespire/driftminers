@@ -1,5 +1,5 @@
 <x-layouts.client>
-    @if(count(PlanServices::all()) != 0)
+    @if(count(PlanFacade::all()) != 0)
         <div class="card">
             <img src="{{ asset('assets/money-5496527_640.webp') }}" class="card-img-top" alt="...">
             <h5 class="card-header">Available Plans</h5>
@@ -8,8 +8,8 @@
                     List of Available Plans
                 </p>
                 <div class="list-group">
-                    @if(PlanServices::all()->isNotEmpty())
-                        @foreach(PlanServices::all() as $plan)
+                    @if(PlanFacade::all()->isNotEmpty())
+                        @foreach(PlanFacade::all() as $plan)
                             <a href="#" class="list-group-item list-group-item-action">
                                 <div class="d-flex w-100 justify-content-between">
                                     <h5 class="mb-1">{{ $plan->name }}</h5>

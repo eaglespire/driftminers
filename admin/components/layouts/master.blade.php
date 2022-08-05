@@ -15,15 +15,16 @@
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="{{asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
     @stack('css')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- JQVMap -->
     <link rel="stylesheet" href="/plugins/jqvmap/jqvmap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.0/dist/chart.min.js"></script>
     <!-- Theme style -->
 {{--    <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">--}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css" integrity="sha512-IuO+tczf4J43RzbCMEFggCWW5JuX78IrCJRFFBoQEXNvGI6gkUw4OjuwMidiS4Lm9Q2lILzpJwZuMWuSEeT9UQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ asset('static/css/override.css') }}">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-@include('sweetalert::alert')
+
 <!-- Site wrapper -->
 <div class="wrapper">
     <!-- Navbar -->
@@ -63,8 +64,9 @@
     <aside class="main-sidebar main-sidebar-custom sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
         <a href="" class="brand-link">
-            <img src="{{asset('assets/logo-128.png')}}" alt="{{config('app.name')}}" class="brand-image elevation-3">
-            <span class="brand-text font-weight-light">{{config('app.name')}}</span>
+{{--            <img src="{{asset('static/images/logo/logo-white.svg')}}" alt="{{config('app.name')}}" class="brand-image elevation-3">--}}
+{{--            <span class="brand-text font-weight-bold text-center">{{config('app.name')}}</span>--}}
+            <span class="ml-2 font-weight-bold">{{config('app.name')}}</span>
         </a>
 
         <!-- Sidebar -->
@@ -146,6 +148,7 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
+                @include('messages')
                 {{ $slot }}
             </div>
         </section>
@@ -169,12 +172,13 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+{{--<script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>--}}
 <!-- Bootstrap 4 -->
 <script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- overlayScrollbars -->
 <script src="{{asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
-<script src="{{ asset('js/alpine.js') }}"></script>
+{{--<script src="{{ asset('js/alpine.js') }}"></script>--}}
 {{--<script>--}}
 {{--    function resizeIframe(obj) {--}}
 {{--        obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';--}}
@@ -185,6 +189,5 @@
 <!-- AdminLTE App -->
 {{--<script src="{{asset('dist/js/adminlte.min.js')}}"></script>--}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js" integrity="sha512-KBeR1NhClUySj9xBB0+KRqYLPkM6VvXiiWaSz/8LCQNdRpUm38SWUrj0ccNDNSkwCD9qPA4KobLliG26yPppJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
 </body>
 </html>

@@ -1,12 +1,12 @@
 <div class="row">
     <div class="col-lg-12 col-md-12 col-12">
         <!-- Horizontal Form -->
-        <div class="card bg-secondary">
+        <div class="card bg-primary">
             <div class="card-header">
-                <h3 class="card-title">{{__('Edit this Plan')}}</h3>
-                <a onclick="event.preventDefault(); document.getElementById('delete-form').submit()" href="{{route('delete_plan', $plan->id)}}" class="btn btn-danger float-right">
-                    <i class="fas fa-trash"></i> Delete Plan Instead
-                </a>
+                <h3 class="card-title">{{__('Edit this PlanFacade')}}</h3>
+{{--                <a onclick="event.preventDefault(); document.getElementById('delete-form').submit()" href="{{route('delete_plan', $plan->id)}}" class="btn btn-danger float-right">--}}
+{{--                    <i class="fas fa-trash"></i> Delete PlanFacade Instead--}}
+{{--                </a>--}}
                 <form id="delete-form" action="{{route('delete_plan', $plan->id)}}" class="d-none" method="POST">
                     @csrf
                     @method('DELETE')

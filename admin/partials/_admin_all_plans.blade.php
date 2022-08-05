@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col">
-        <div class="card bg-secondary">
+        <div class="card bg-primary">
             <h6 class="card-header">All Plans</h6>
             <!-- /.card-header -->
             <div class="card-body">

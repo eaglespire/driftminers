@@ -15,7 +15,7 @@ class SubscriptionException extends Exception
 
     public function report()
    {
-       Log::debug('Subscription Error');
+       Log::debug('SubscriptionFacade Error');
    }
    public function render()
    {

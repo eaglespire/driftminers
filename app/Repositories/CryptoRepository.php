@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Exceptions\InternetConnection;
 use App\Interfaces\CryptoInterface;
+use Illuminate\Support\Facades\Log;
 use WisdomDiala\Cryptocap\Facades\Cryptocap;
 
 class CryptoRepository implements CryptoInterface
@@ -18,6 +19,7 @@ class CryptoRepository implements CryptoInterface
         try {
             return Cryptocap::getAssetsWithLimit($number)->data;
         } catch(\Exception $exception){
+            Log::error($exception->getMessage());
             throw new InternetConnection();
         }
     }

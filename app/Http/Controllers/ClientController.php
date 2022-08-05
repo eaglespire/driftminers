@@ -1,30 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Interfaces\DepositInterface;
-use App\Interfaces\PlanRepositoryInterface;
-use App\Interfaces\SubscriptionInterface;
+use App\Facades\TransactionHistoryFacade;
+use App\Rules\AmountRule;
 use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
-use UserSubscription;
+use App\Facades\SubscriptionFacade;
+use App\Facades\UserFacade;
+use App\Facades\WithdrawalFacade;
 
 class ClientController extends Controller
 {
-    protected SubscriptionInterface $subscription;
-    protected PlanRepositoryInterface $planRepository;
-    protected DepositInterface $depositRepository;
 
-    public function __construct(
-        SubscriptionInterface $subscription,
-        PlanRepositoryInterface $planRepository,
-        DepositInterface $depositRepository,
-    )
+    public function __construct()
     {
-        $this->middleware(['auth','role.user']);
-        $this->subscription = $subscription;
-        $this->planRepository = $planRepository;
-        $this->depositRepository = $depositRepository;
+        $this->middleware(['auth','verified','role.user']);
     }
     public function welcome()
     {
@@ -32,11 +21,7 @@ class ClientController extends Controller
     }
     public function profile()
     {
-         //dd(Auth::user()->notifications[0]['data']);
-        $plans = $this->planRepository->getAllPlans();
-        $subscription = $this->subscription->getSubscribedUser(auth()->id());
-        //dd($subscription);
-        return view('client.profile',compact('plans','subscription'));
+        return view('client.profile');
     }
 
     /**
@@ -45,18 +30,16 @@ class ClientController extends Controller
 
     public function subscribeToPlan(Request $request)
     {
-        if (UserSubscription::subscribe($request)){
-            Alert::success('Success','You have subscribed successfully');
+        if (SubscriptionFacade::subscribe($request)){
+            session()->flash('success','Success but Subscription is Pending');
             return back();
         }
-        Alert::error('Error','Ooops!!!, Something went wrong');
+        session()->flash('error','Ooops!!!, Something went wrong!');
         return back();
     }
-
     /**
      * @throws \Illuminate\Validation\ValidationException
      */
-
         public function settings()
         {
             return view('client.settings');
@@ -67,7 +50,9 @@ class ClientController extends Controller
     }
     public function withdrawal()
     {
-        return view('client.withdrawal');
+        return view('client.withdrawal', [
+            'status'=>WithdrawalFacade::status(auth()->id())
+        ]);
     }
     public function allPlans()
     {
@@ -83,11 +68,51 @@ class ClientController extends Controller
     }
     public function transactions()
     {
-        return view('client.transactions');
+        return view('client.transactions', [
+            'transactions'=>TransactionHistoryFacade::histories(auth()->id())
+        ]);
     }
     public function subscribe()
     {
-        return view('client.subscribe');
+        return view('client.subscribe', [
+            'status'=>SubscriptionFacade::checkUserHasSubscribed(auth()->id())
+        ]);
+    }
+    public function storeClientWalletAddress(Request $request)
+    {
+       $request->validate([
+           'wallet_address'=>['required','string','min:26','max:35']
+       ]);
+       if(UserFacade::setUpWalletAddress(auth()->id(), $request['wallet_address'])){
+           return back()->with('success','Address setup completed');
+       }
+       return back()->with('error','Ooops!!!, Something went wrong. Try again later');
+    }
+    public function updateClientWalletAddress(Request $request)
+    {
+        $request->validate([
+            'wallet_address'=>['required','string','min:26','max:35']
+        ]);
+        if (UserFacade::updateWalletAddress(auth()->id(), $request['wallet_address'])){
+            return back()->with('success','Updated successfully');
+        }
+        return back()->with('error','An error has occurred');
+    }
+
+    public function processWithdrawal(Request $request)
+    {
+
+        $request->validate([
+            'amount'=>['required','numeric',new AmountRule],
+            'wallet_address'=>['required','string','min:24'],
+            'cryptocurrency_type'=>['required','string']
+        ]);
+
+        if (WithdrawalFacade::withdrawalRequest($request)){
+            return back()->with('success','Request submitted successfully');
+        } else{
+            return back()->with('error','Ooops!!, Something went wrong');
+        }
     }
 
 }

@@ -1,28 +1,50 @@
 <?php
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\AdminLogicController;
+use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\Auth\ChangePasswordController;
+use App\Http\Controllers\Auth\ProfileController;
+use App\Http\Controllers\BtcAddressController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/drift/miners/admin/profile', [ AdminController::class,'home' ])->name('admin_home');
-Route::get('/drift/miners/admin/plans/create',[ AdminController::class,'create_plans' ])->name('create_plans');
-Route::get('/drift/miners/admin/plans',[ AdminController::class,'all_plans' ])->name('all_plans');
-Route::post('/drift/miners/admin/plans',[ AdminController::class,'store_plan' ])->name('store_plan');
-Route::get('/drift/miners/admin/plans/{id}/edit', [ AdminController::class,'edit_plan' ])->name('edit_plan');
-Route::put('/drift/miners/admin/plans/{id}/update', [ AdminController::class,'update_plan' ])->name('update_plan');
-Route::delete('/drift/miners/admin/plans/{id}', [ AdminController::class,'delete_plan' ])->name('delete_plan');
 
-Route::get('/drift/miners/admin/subscribers', [ AdminController::class,'subscribers' ])->name('subscribers');
-Route::get('/drift/miners/admin/subscribers/{id}', [ AdminController::class,'subscriber' ])->name('subscriber');
-Route::get('/drift/miners/admin/deposits/unapproved', [ AdminController::class,'unapprovedDeposits' ])->name('unapproved_deposits');
-Route::get('/drift/miners/admin/deposits/approved', [ AdminController::class,'approvedDeposits' ])->name('approved_deposits');
-Route::post('/drift/miners/admin/subscribers/{id}', [ AdminController::class,'activateSubscription' ])->name('activate_subscription');
-Route::delete('/drift/miners/subscribers/{id}', [ AdminController::class,'cancelSubscription' ])->name('cancel_subscription');
-Route::delete('/drift/miners/subscribers/reject/{id}', [ AdminController::class,'rejectSubscriptionRequest' ])->name('reject_subscription');
-Route::put('/drift/miners/admin/profit/{id}', [ AdminController::class,'setDailyProfit' ])->name('update_user_wallet');
+Route::controller(PageController::class)->prefix('drift/miners/admin')->group(function (){
+    Route::get('profile',  'home' )->name('admin_home');
+    Route::get('plans/create','createPlansPage' )->name('create_plans');
+    Route::get('plans','allPlansPage' )->name('all_plans');
+    Route::get('plans/{id}/edit', 'editPlanPage' )->name('edit_plan');
+    Route::get('subscribers', 'subscribersPage' )->name('subscribers');
+    Route::get('subscribers/{id}', 'subscriberPage' )->name('subscriber');
+    Route::get('users', 'usersPage' )->name('users.all');
+    Route::get('users/create', 'createUserPage' )->name('users.create');
+    Route::get('users/{id}/edit', 'editUserPage' )->name('users.edit');
+    Route::get('users/{id}', 'showUserPage' )->name('users.show');
+    Route::get('messages', 'messagesPage' )->name('messages.index');
+    Route::get('settings','settingsPage')->name('settings.index');
+});
+Route::controller(AdminLogicController::class)->prefix('drift/miners/admin')->group(function (){
+    Route::post('plans','store_plan' )->name('store_plan');
+    Route::put('plans/{id}/update', 'update_plan' )->name('update_plan');
+    Route::delete('plans/{id}', 'delete_plan' )->name('delete_plan');
+    Route::post('subscribers/{id}', 'activateSubscription' )->name('activate_subscription');
+    Route::delete('subscribers/{id}', 'cancelSubscription' )->name('cancel_subscription');
+    Route::delete('subscribers/reject/{id}','rejectSubscriptionRequest' )->name('reject_subscription');
+    Route::put('profit/{id}', 'miningFunction' )->name('update_user_wallet');
+    Route::put('user_wallet/update', 'updateUserWallet' )->name('update_user_wallet_from_admin');
+    Route::post('users', 'storeUser' )->name('users.store');
+    Route::put('users/{id}/update', 'updateUser' )->name('users.update');
+    Route::delete('users/{id}', 'deleteUser' )->name('users.destroy');
+    Route::post('reject-withdrawal', 'rejectWithdrawal' )->name('withdrawal.reject');
+    Route::post('accept-withdrawal', 'acceptWithdrawal' )->name('withdrawal.accept');
+    Route::post('pay-now', 'payNow' )->name('withdrawal.pay');
+});
 
-Route::get('/drift/miners/admin/users', [ AdminController::class,'users' ])->name('users.all');
-Route::get('/drift/miners/admin/users/create', [ AdminController::class,'createUser' ])->name('users.create');
-Route::post('/drift/miners/admin/users', [ AdminController::class,'storeUser' ])->name('users.store');
-Route::get('/drift/miners/admin/users/{id}/edit', [ AdminController::class,'editUser' ])->name('users.edit');
-Route::put('/drift/miners/admin/users/{id}/update', [ AdminController::class,'updateUser' ])->name('users.update');
-Route::delete('/drift/miners/admin/users/{id}', [ AdminController::class,'deleteUser' ])->name('users.destroy');
+Route::prefix('drift/miners/admin')->name('admin.')->group(function (){
+    Route::put('settings/profile', [ ProfileController::class,'updateProfile' ])->name('settings.profile');
+    Route::put('settings/password', [ ChangePasswordController::class,'changePassword' ])->name('settings.password');
+    Route::post('settings/btc-address', [ BtcAddressController::class ,'store'])->name('settings.btc.store');
+    Route::put('settings/btc-address', [ BtcAddressController::class,'update' ])->name('settings.btc.update');
+});
+
+
+

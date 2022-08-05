@@ -35,6 +35,9 @@
                                                 <a href="{{ route('users.edit', $user->id) }}" class="btn btn-info">
                                                     <i class="fas fa-edit"></i> edit
                                                 </a>
+                                                <a href="{{ route('users.show', $user->id) }}" class="btn btn-primary">
+                                                    <i class="fas fa-eye"></i> view
+                                                </a>
                                                 <form action="{{ route('users.destroy', $user->id) }}" class="d-inline" method="post">
                                                     @csrf
                                                     @method('DELETE')

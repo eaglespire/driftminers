@@ -28,10 +28,14 @@ class Kernel extends ConsoleKernel
 //        })->everyMinute()->when(function (){
 //            return true;
 //        });
-        $schedule->call(function ($duration,$amount,$roi){
-            Artisan::call('start:mining', [$duration,$amount,$roi]);
-        })->everyMinute();
-        $schedule->command('start:mining',) ;
+//        $schedule->call(function ($duration,$amount,$roi){
+//            Artisan::call('start:mining', [$duration,$amount,$roi]);
+//        })->everyMinute();
+//        $schedule->command('start:mining',) ;
+//        $schedule->call(function (){
+//           Artisan::call('queue:work');
+//        })->everyMinute();
+        $schedule->command('queue:work --daemon')->everyMinute()->withoutOverlapping();
     }
 
     /**

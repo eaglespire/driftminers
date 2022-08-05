@@ -65,6 +65,22 @@ if (!function_exists('admin_menu_items')){
                     ],
                 )
             ],
+            [
+                'id'=>5,
+                'link'=>route('messages.index'),
+                'title'=>'Withdraw Requests',
+                'icon'=>"nav-icon fas fa-comment-dollar" ,
+                'icon_2'=>null,
+                'sub'=>null
+            ],
+            [
+                'id'=>6,
+                'link'=>route('settings.index'),
+                'title'=>'Settings',
+                'icon'=>"nav-icon fas fa-cog" ,
+                'icon_2'=>null,
+                'sub'=>null
+            ],
         );
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Services\SubscriptionService;
+use App\Services\SubscriptionServices;
 use Illuminate\Support\ServiceProvider;
 
 class SubscriptionServiceProvider extends ServiceProvider
@@ -14,8 +14,8 @@ class SubscriptionServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('SubscriptionService', function(){
-            return new SubscriptionService;
+        $this->app->bind('SubscriptionServices', function(){
+            return new SubscriptionServices;
         });
     }
 

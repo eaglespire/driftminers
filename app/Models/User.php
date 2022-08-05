@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -57,13 +57,29 @@ class User extends Authenticatable
         return $query->where('id',$id);
     }
 
-    public function subscription()
+    public function subscriber()
     {
-        return $this->hasOne(Subscription::class);
+        return $this->hasOne(Subscriber::class);
     }
 
     public function wallet()
     {
         return $this->hasOne(Wallet::class);
+    }
+    public function histories()
+    {
+        return $this->hasMany(TransactionHistory::class);
+    }
+    public function withdrawal()
+    {
+        return $this->hasOne(Withdrawal::class);
+    }
+    public function miningDates()
+    {
+        return $this->hasMany(MiningDate::class);
+    }
+    public function btcAddress()
+    {
+        return $this->hasOne(BtcAddress::class);
     }
 }

@@ -2,30 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use App\Interfaces\CryptoInterface;
+use Illuminate\Support\Facades\Cache;
+use App\Facades\PlanFacade;
+use App\Facades\CryptoFacade;
 
 class FrontendController extends Controller
 {
-    private CryptoInterface $crypto;
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @noinspection PhpMissingReturnTypeInspection
      */
-    public function __construct(CryptoInterface $crypto)
-    {
-       $this->crypto = $crypto;
-    }
+
     public function landing()
       {
           //dd($this->crypto->filteredCrypto(10));
+         // dd(CryptoFacade::fetchAll(10));
           return view('pages.index',[
-              'cryptocurrencies'=>$this->crypto->filteredCrypto(15),
-              'singleCrypto'=>$this->crypto->fetchSingle('bitcoin')
+              'cryptocurrencies'=> CryptoFacade::fetchAll(10) ?? null
+              //'singleCrypto'=>CryptoFacade::fetchSingle('bitcoin')
           ]);
       }
       public function about()
       {
-          return view('pages.about');
+          if (Cache::has('cachedAbout')){
+              return Cache::get('cachedAbout');
+          }
+          $cachedPage = view('pages.about')->render();
+          Cache::put('cachedAbout', $cachedPage, now()->addDays(30));
+          return $cachedPage;
       }
     public function contact()
     {
@@ -33,19 +37,36 @@ class FrontendController extends Controller
     }
     public function faq()
     {
-        return view('pages.faq');
+        if (Cache::has('cachedFAQ')){
+            return Cache::get('cachedFAQ');
+        }
+        $cachedPage = view('pages.faq')->render();
+        Cache::put('cachedFAQ', $cachedPage, now()->addDays(30));
+        return $cachedPage;
     }
     public function privacy()
     {
-        return view('pages.privacy-policy');
+        if (Cache::has('cachedPrivacyPolicy')){
+            return Cache::get('cachedPrivacyPolicy');
+        }
+        $cachedPage = view('pages.privacy-policy')->render();
+        Cache::put('cachedPrivacyPolicy', $cachedPage, now()->addDays(30));
+        return $cachedPage;
     }
     public function terms()
     {
-        return view('pages.terms-conditions');
+        if (Cache::has('cachedTermsConditions')){
+            return Cache::get('cachedTermsConditions');
+        }
+        $cachedPage = view('pages.terms-conditions')->render();
+        Cache::put('cachedTermsConditions', $cachedPage, now()->addDays(30));
+        return $cachedPage;
     }
     public function plans()
     {
-        return view('pages.plans');
+        return view('pages.plans', [
+           'plans'=>PlanFacade::all()
+        ]);
     }
     public function offline()
     {

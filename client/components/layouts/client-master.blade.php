@@ -1,3 +1,4 @@
+{{--{{ dd(auth()->user()->unreadNotifications) }}--}}
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -11,10 +12,13 @@
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" integrity="sha512-BnbUDfEUfV0Slx6TunuB042k9tuKe3xrD6q4mg5Ed72LTgzDIcLPxg6yI2gcMFRyomt+yJJxE+zJwNmxki6/RA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+{{--    <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">--}}
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/custom.css')}}">
+{{--    <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">--}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css" integrity="sha512-IuO+tczf4J43RzbCMEFggCWW5JuX78IrCJRFFBoQEXNvGI6gkUw4OjuwMidiS4Lm9Q2lILzpJwZuMWuSEeT9UQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+{{--    <link rel="stylesheet" href="{{asset('css/custom.css')}}">--}}
+    <link rel="stylesheet" href="{{ asset('static/css/override.css') }}">
     <style>
         @media (min-width: 576px) {
             .card-columns {
@@ -40,14 +44,14 @@
     @stack('css')
 </head>
 <body class="hold-transition layout-top-nav">
-@include('sweetalert::alert')
+{{--@include('sweetalert::alert')--}}
 <div class="wrapper">
 
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand-lg navbar-light navbar-white">
         <div class="container">
             <a href="/" class="navbar-brand">
-                <img src="/assets/logo_128_b.svg" alt="{{config('app.name')}} logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+{{--                <img src="{{ asset('static/images/logo/logo.svg') }}" alt="{{config('app.name')}} logo" class="brand-image elevation-3" style="opacity: .8">--}}
                 <span class="brand-text font-weight-light">{{config('app.name')}}</span>
             </a>
 
@@ -75,17 +79,17 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         <i class="fas fa-envelope mr-2"></i>
-                        <span class="badge badge-danger navbar-badge">{{ count(auth()->user()->notifications) }}</span>
+                        <span class="badge badge-danger navbar-badge">{{ count(auth()->user()->unreadNotifications) }}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         @foreach(auth()->user()->unreadNotifications as $notification)
                             <a href="#" class="dropdown-item">
                                 <!-- Message Start -->
                                 <div class="media">
-                                    <img src="../../dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                                    <img src="/assets/man-157699_640.webp" alt="User Avatar" class="img-size-50 img-circle mr-3">
                                     <div class="media-body">
                                         <h3 class="dropdown-item-title">
-                                            From Admin
+                                            New Message
                                             <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
                                         </h3>
                                         <p class="text-sm">{{ $notification->data['message'] }}</p>
@@ -99,24 +103,7 @@
                         <a href="{{ route('mark-as-read') }}" class="dropdown-item dropdown-footer">Mark as Read</a>
                     </div>
                 </li>
-                <!-- Notifications Dropdown Menu -->
-                    <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="far fa-bell"></i>
-                        <span class="badge badge-warning navbar-badge">{{ count(auth()->user()->notifications) }}</span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <span class="dropdown-header">{{ count(auth()->user()->unreadNotifications) }} Notifications</span>
-                        @foreach(auth()->user()->notifications as $notification)
-                            <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item">
-                                <i class="fas fa-envelope mr-2"></i> 1 new message
-                                <span class="float-right text-muted text-sm">{{ $notification->created_at->toFormattedDateString() }}</span>
-                            </a>
-                        @endforeach
-                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-                    </div>
-                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                         <i class="fas fa-expand-arrows-alt"></i>
@@ -128,13 +115,13 @@
                         {{ auth()->user()->name }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('client.profile') }}">
-                            <i class="fas fa-user-alt"></i> Profile
+                        <a class="dropdown-item" href="{{ route('client.welcome') }}">
+                            <i class="fas fa-tachometer-alt"></i> Dashboard
                         </a>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="{{ route('client.profile') }}">
                             <i class="fas fa-cog"></i> Settings
                         </a>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="{{ route('client.transactions') }}">
                             <i class="fas fa-history"></i> Transaction history
                         </a>
                         <div class="dropdown-divider"></div>
@@ -190,12 +177,14 @@
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
-<script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+{{--<script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>--}}
 <!-- Bootstrap 4 -->
 <script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- AdminLTE App -->
-<script src="{{asset('dist/js/adminlte.min.js')}}"></script>
-<script src="{{asset('js/alpine.js')}}"></script>
+{{--<script src="{{asset('dist/js/adminlte.min.js')}}"></script>--}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js" integrity="sha512-KBeR1NhClUySj9xBB0+KRqYLPkM6VvXiiWaSz/8LCQNdRpUm38SWUrj0ccNDNSkwCD9qPA4KobLliG26yPppJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+{{--<script src="{{asset('js/alpine.js')}}"></script>--}}
 @stack('scripts')
 </body>
 </html>

@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Services\Wallet;
-use App\Services\WalletService;
+use App\Services\WalletServices;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
 
@@ -16,8 +16,8 @@ class WalletServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('WalletService', function ($app){
-           return new WalletService;
+        $this->app->bind('WalletServices', function ($app){
+           return new WalletServices;
         });
     }
 

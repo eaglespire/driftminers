@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class AdminDBSubscriptionCancelled extends Notification implements ShouldQueue
+class AdminDBSubscriptionCancelled extends Notification
 {
     use Queueable;
     public User $user;

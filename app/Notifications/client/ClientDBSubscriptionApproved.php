@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ClientDBSubscriptionApproved extends Notification implements ShouldQueue
+class ClientDBSubscriptionApproved extends Notification
 {
     use Queueable;
      public User $user;
@@ -56,7 +56,7 @@ class ClientDBSubscriptionApproved extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'message'=>'Your subscription for the plan, '. $this->user->subscription->plan->name . ' has been activated successfully'
+            'message'=>'Your subscription for the plan, '. $this->user->subscriber->plan->name . ' has been activated successfully'
         ];
     }
 }

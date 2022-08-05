@@ -1188,7 +1188,7 @@ $.validator.addMethod( "phoneNL", function( value, element ) {
  *
  * Excludes intelligent networks (premium rate, shared cost, free phone numbers).
  *
- * Poland National Numbering Plan http://www.itu.int/oth/T02020000A8/en
+ * Poland National Numbering PlanFacade http://www.itu.int/oth/T02020000A8/en
  */
 $.validator.addMethod( "phonePL", function( phone_number, element ) {
 	phone_number = phone_number.replace( /\s+/g, "" );

@@ -3,17 +3,17 @@
          <div class="card card-body bg-secondary">
              <div class="table-responsive">
                  <table class="table">
-                     <thead class="bg-primary">
+                     <thead class="bg-dark">
                      <tr>
-                         <th scope="col">Name</th>
-                         <th scope="col">Email</th>
-                         <th scope="col">Plan</th>
-                         <th scope="col">Minimum Amount</th>
-                         <th scope="col">Amount Invested</th>
-                         <th scope="col">Status</th>
-                         <th scope="col">Start Date</th>
-                         <th scope="col">End Date</th>
-                         <th scope="col">Action</th>
+                         <th scope="col" class="align-middle">Name</th>
+                         <th scope="col" class="align-middle">Email</th>
+                         <th scope="col" class="align-middle">Plan</th>
+                         <th scope="col" class="align-middle">Minimum Amount</th>
+                         <th scope="col" class="align-middle">Amount Invested</th>
+                         <th scope="col" class="align-middle">Status</th>
+                         <th scope="col" class="align-middle">Start Date</th>
+                         <th scope="col" class="align-middle">End Date</th>
+                         <th scope="col" class="align-middle">Action</th>
                      </tr>
                      </thead>
                      @if(count($subscribers) != 0)
@@ -41,11 +41,9 @@
                                                  @csrf
                                                  <button class="btn btn-success" type="submit" onclick="return confirm('Activate Subscription?')">Activate</button>
                                              </form>
-                                             <form action="{{ route('reject_subscription', $subscriber->id) }}" class="form-inline" method="post">
-                                                 @csrf
-                                                 @method('DELETE')
-                                                 <button class="btn btn-danger" type="submit" onclick="return confirm('Reject This Subscription?')">Reject</button>
-                                             </form>
+                                             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#cancelSubscriptionModal">
+                                                 Reject
+                                             </button>
                                          @else
                                              <form action="{{ route('cancel_subscription', $subscriber->id) }}" class="form-inline" method="post">
                                                  @csrf
@@ -57,6 +55,7 @@
                                      </div>
                                  </td>
                              </tr>
+                             @include('partials.updates._reject_subscription')
                          @endforeach
                          </tbody>
                      @endif
@@ -66,25 +65,3 @@
     </div>
 </div>
 
-@push('scripts')
-    <script>
-        function confirmation(ev) {
-            ev.preventDefault();
-            let urlToRedirect = {{ url()->current() }}
-            //var urlToRedirect = ev.currentTarget.getAttribute('href');
-            console.log(urlToRedirect);
-            swal({
-                title: "Are you sure to cancel this product",
-                text: "You will not be able to revert this!",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-                .then((willCancel) => {
-                    if (willCancel) {
-                        window.location.href = urlToRedirect;
-                    }
-                });
-        }
-    </script>
-@endpush

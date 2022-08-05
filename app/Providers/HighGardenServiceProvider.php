@@ -42,7 +42,7 @@ class HighGardenServiceProvider extends ServiceProvider implements DeferrablePro
         Blade::directive('subscribed', function (){
             return "<?php
                     if (\Illuminate\Support\Facades\Schema::hasTable('subscriptions')) {
-                        if (\App\Models\Subscription::where('user_id',\Illuminate\Support\Facades\Auth::id())->first()){
+                        if (\App\Models\Subscriber::where('user_id',\Illuminate\Support\Facades\Auth::id())->first()){
                         return 'disabled';
                         }
                         return null;

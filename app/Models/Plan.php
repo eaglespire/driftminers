@@ -16,13 +16,9 @@ class Plan extends Model
         'duration',
     ];
 
-    public function deposits()
+    public function subscribers()
     {
-        return $this->hasMany(Deposit::class);
-    }
-    public function subscriptions()
-    {
-        return $this->hasMany(Subscription::class);
+        return $this->hasMany(Subscriber::class);
     }
 
     public function scopeGetPlanById($query,$id)
